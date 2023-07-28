@@ -1,11 +1,15 @@
 {
-  "name": "arie-root",
-  "private": true,
+  "name": "arie",
+  "version": "0.0.1",
   "description": "A lightweight React library for presenting cursor movement and interaction.",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
   "scripts": {
-    "build": "turbo run build",
-    "build:web": "turbo run build --filter=arie-web...",
-    "dev:web": "turbo run dev --filter=arie-web...",
+    "build": "tsup src/index.ts",
     "format": "prettier --write ."
   },
   "keywords": [
@@ -16,7 +20,11 @@
   "author": "chvndler",
   "license": "MIT",
   "packageManager": "pnpm@8.6.10",
-  "devDependencies": {
+  "peerDependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "dependencies": {
     "eslint": "^8.45.0",
     "prettier": "^3.0.0",
     "tsup": "^7.1.0",
