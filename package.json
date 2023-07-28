@@ -10,7 +10,7 @@
   ],
   "scripts": {
     "prebuild": "NODE_ENV=development pnpm install",
-    "build": "NODE_ENV=development turbo run build",
+    "build": "turbo build",
     "build:arie": "tsup src/index.ts",
     "build:web": "turbo run build --filter=arie-web...",
     "dev:web": "turbo run dev --filter=arie-web...",
@@ -28,7 +28,7 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
-  "devDependencies": {
+  "dependencies": {
     "eslint": "^8.45.0",
     "prettier": "^3.0.0",
     "tsup": "^7.1.0",
