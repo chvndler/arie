@@ -1,5 +1,9 @@
-import { ArieHero } from '../components/arie.hero';
+import { ArieHero } from '@/components/arie.hero';
+import { TrackArie } from '@/components/arie';
 import { Metadata } from 'next';
+import { AppWrapper } from '@/components/app.wrapper';
+import { GlobalFooter } from '@/components/global.footer';
+import { AriePosition } from '@/components/arie.position';
 
 export const metadata: Metadata = {
   title: 'Arie.js',
@@ -23,8 +27,10 @@ export const metadata: Metadata = {
 
 export default function Home() {
   return (
-    <main className='antialiased'>
+    <AppWrapper>
       <ArieHero />
-    </main>
+      <AriePosition />
+      <GlobalFooter />
+    </AppWrapper>
   );
 }

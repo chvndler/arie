@@ -15,16 +15,14 @@ main {
 }
 
 html {
-  background: black;
+  padding: 0;
+  margin: 0;
+  height: -webkit-fill-available;
+  width: 100vw;
 }
 
 main {
   min-height: 100vh;
-  background: white;
-}
-
-html {
-  height: -webkit-fill-available;
 }
 
 a {
