@@ -10,6 +10,7 @@
   ],
   "scripts": {
     "build": "tsup src/index.ts",
+    "build:web": "turbo run build --filter=arie-web...",
     "format": "prettier --write ."
   },
   "keywords": [
