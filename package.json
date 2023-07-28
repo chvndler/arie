@@ -9,8 +9,11 @@
     "dist"
   ],
   "scripts": {
-    "build": "tsup src/index.ts",
+    "prebuild": "NODE_ENV=development pnpm install",
+    "build": "turbo run build",
+    "build:arie": "tsup src/index.ts",
     "build:web": "turbo run build --filter=arie-web...",
+    "dev:web": "turbo run dev --filter=arie-web...",
     "format": "prettier --write ."
   },
   "keywords": [
