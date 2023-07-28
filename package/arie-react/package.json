@@ -1,6 +1,6 @@
 {
-  "name": "arie",
-  "version": "0.0.1",
+  "name": "@atlrdsgn/arie",
+  "version": "0.0.2",
   "description": "A lightweight React library for presenting cursor movement and interaction.",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
@@ -10,6 +10,7 @@
   ],
   "scripts": {
     "build": "tsup src/index.ts",
+    "release": "npm publish --access public",
     "format": "prettier --write ."
   },
   "keywords": [
@@ -17,6 +18,9 @@
     "cursor-position",
     "user-position"
   ],
+  "publishConfig": {
+    "access": "public"
+  },
   "author": "chvndler",
   "license": "MIT",
   "packageManager": "pnpm@8.6.10",

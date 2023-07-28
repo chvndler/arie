@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { useArie } from 'arie';
+import { useArie } from '@atlrdsgn/arie';
 
 export const TrackArie = () => {
   const {
