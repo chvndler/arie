@@ -1,5 +1,5 @@
-import { useState, useEffect } from "react";
-import { type Cursor, type EventType } from "./types";
+import { useState, useEffect } from 'react';
+import { type Cursor, type EventType } from './types';
 
 const initArie: Cursor = {
   position: {
@@ -31,7 +31,7 @@ const initArie: Cursor = {
 export const useArie = (
   touchEnabled: boolean = true,
   selectedElementId: string | null = null,
-  selectedElementOffset: { x: number; y: number } = { x: 0, y: 0 }
+  selectedElementOffset: { x: number; y: number } = { x: 0, y: 0 },
 ): Cursor => {
   const [cursor, setCursor] = useState<Cursor>(initArie);
   let selectedEl: HTMLElement | null = null;
@@ -46,10 +46,10 @@ export const useArie = (
     const scroll = { ...cursor.scroll };
 
     switch (event.type as EventType) {
-      case "mousemove":
-      case "mousedown":
-      case "mouseup":
-      case "wheel":
+      case 'mousemove':
+      case 'mousedown':
+      case 'mouseup':
+      case 'wheel':
         const cursorEvent = event as MouseEvent;
 
         clientX = cursorEvent.clientX;
@@ -62,8 +62,8 @@ export const useArie = (
         scroll.wheelUp = (event as WheelEvent).deltaY < 0;
 
         break;
-      case "touchmove":
-      case "touchstart":
+      case 'touchmove':
+      case 'touchstart':
         const { touches } = event as TouchEvent;
         const touchEvent = touches[0];
 
@@ -87,7 +87,9 @@ export const useArie = (
       selectedElPosition.y = clientY - top - selectedElementOffset.y;
       const rad2Deg = 180 / Math.PI;
       const angleOffset = 180;
-      selectedElPosition.angle = Math.atan2(selectedElPosition.y, -selectedElPosition.x) * rad2Deg + angleOffset;
+      selectedElPosition.angle =
+        Math.atan2(selectedElPosition.y, -selectedElPosition.x) * rad2Deg +
+        angleOffset;
       selectedElBoundingRect.left = left;
       selectedElBoundingRect.top = top;
       selectedElBoundingRect.width = width;
@@ -135,42 +137,43 @@ export const useArie = (
 
   useEffect(() => {
     if (selectedElementId) {
+      // eslint-disable-next-line react-hooks/exhaustive-deps
       selectedEl = document.getElementById(selectedElementId);
       if (!selectedEl) {
-        throw new Error(`Element with id="${selectedElementId}" doesn't exists`);
+        throw new Error(
+          `Element with id="${selectedElementId}" doesn't exists`,
+        );
       }
-      selectedEl.addEventListener("mouseenter", onSelectedElementEnter);
-      selectedEl.addEventListener("mouseleave", onSelectedElementLeave);
+      selectedEl.addEventListener('mouseenter', onSelectedElementEnter);
+      selectedEl.addEventListener('mouseleave', onSelectedElementLeave);
     }
-    document.addEventListener("mousemove", onCursorTouchEvent);
-    document.addEventListener("mousedown", onCursorTouchEvent);
-    document.addEventListener("mouseup", onCursorTouchEvent);
-    document.addEventListener("wheel", onCursorTouchEvent);
-    document.addEventListener("mouseleave", onLeave);
+    document.addEventListener('mousemove', onCursorTouchEvent);
+    document.addEventListener('mousedown', onCursorTouchEvent);
+    document.addEventListener('mouseup', onCursorTouchEvent);
+    document.addEventListener('wheel', onCursorTouchEvent);
+    document.addEventListener('mouseleave', onLeave);
     if (touchEnabled) {
-      window.addEventListener("touchmove", onCursorTouchEvent);
-      window.addEventListener("touchstart", onCursorTouchEvent);
-      window.addEventListener("touchend", onLeave);
+      window.addEventListener('touchmove', onCursorTouchEvent);
+      window.addEventListener('touchstart', onCursorTouchEvent);
+      window.addEventListener('touchend', onLeave);
     }
 
     return (): void => {
-      document.removeEventListener("mousemove", onCursorTouchEvent);
-      document.removeEventListener("mousedown", onCursorTouchEvent);
-      document.removeEventListener("mouseup", onCursorTouchEvent);
-      document.removeEventListener("wheel", onCursorTouchEvent);
-      document.removeEventListener("mouseleave", onLeave);
+      document.removeEventListener('mousemove', onCursorTouchEvent);
+      document.removeEventListener('mousedown', onCursorTouchEvent);
+      document.removeEventListener('mouseup', onCursorTouchEvent);
+      document.removeEventListener('wheel', onCursorTouchEvent);
+      document.removeEventListener('mouseleave', onLeave);
       if (touchEnabled) {
-        window.removeEventListener("touchmove", onCursorTouchEvent);
-        window.removeEventListener("touchstart", onCursorTouchEvent);
-        window.removeEventListener("touchend", onLeave);
+        window.removeEventListener('touchmove', onCursorTouchEvent);
+        window.removeEventListener('touchstart', onCursorTouchEvent);
+        window.removeEventListener('touchend', onLeave);
       }
     };
   }, []);
 
   return cursor;
 };
-
-export default useArie;
 
 /**
  *
