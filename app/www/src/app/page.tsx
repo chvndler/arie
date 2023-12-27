@@ -30,6 +30,7 @@ export default function Home() {
     <AppWrapper>
       <ArieHero />
       <AriePosition />
+      <TrackArie />
       <GlobalFooter />
     </AppWrapper>
   );
